@@ -9,8 +9,8 @@ class Program
     static void Main(string[] args)
     {
 
-        int menuInput = -1;
-        while (menuInput != 0)
+        int phMenuInput = -1;
+        while (phMenuInput != 0)
         {
             Console.WriteLine("Welcome to your Journal. Please pick an option");
             Console.WriteLine("{0}\n{1}\n{2}\n{3}", 
@@ -19,16 +19,16 @@ class Program
             "2. View journal entries.",
             "3. Save journal entry.");
             
-            menuInput = int.Parse(Console.ReadLine());
-            if (menuInput == 1)
+            phMenuInput = int.Parse(Console.ReadLine());
+            if (phMenuInput == 1)
             {
                 
-                Entry entry1 = new Entry();
-                entry1.GetUserInput();
-                Console.WriteLine(entry1.date);
-                Console.WriteLine(entry1.entry);
+                Entry phEntry1 = new Entry();
+                phEntry1.GetUserInput();
+                Console.WriteLine(phEntry1.phDate);
+                Console.WriteLine(phEntry1.phEntry);
             }
-            else if (menuInput == 2)
+            else if (phMenuInput == 2)
             {
                 Journal journal1 = new Journal();
             }
