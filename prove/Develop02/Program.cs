@@ -9,8 +9,10 @@ class Program
     static void Main(string[] args)
     {
 
-        int phMenuInput = -1;
-        while (phMenuInput != 0)
+        List<string> ph_entryList = new List<string>();
+
+        int ph_menuInput = -1;
+        while (ph_menuInput != 0)
         {
             Console.WriteLine("Welcome to your Journal. Please pick an option");
             Console.WriteLine("{0}\n{1}\n{2}\n{3}", 
@@ -19,16 +21,22 @@ class Program
             "2. View journal entries.",
             "3. Save journal entry.");
             
-            phMenuInput = int.Parse(Console.ReadLine());
-            if (phMenuInput == 1)
+            ph_menuInput = int.Parse(Console.ReadLine());
+            if (ph_menuInput == 1)
             {
+                List<string> add_entry = new List<string>();
                 
-                Entry phEntry1 = new Entry();
-                phEntry1.GetUserInput();
-                Console.WriteLine(phEntry1.phDate);
-                Console.WriteLine(phEntry1.phEntry);
+                Entry ph_entry1 = new Entry();
+                ph_entry1.GetUserInput();
+                add_entry.Add(ph_entry1.ph_date);
+                add_entry.Add(ph_entry1.ph_newPrompt);
+                add_entry.Add(ph_entry1.ph_entry);
+
+                
+                ph_entryList.AddRange(add_entry);
+
             }
-            else if (phMenuInput == 2)
+            else if (ph_menuInput == 2)
             {
                 Journal journal1 = new Journal();
             }

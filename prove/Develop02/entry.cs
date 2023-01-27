@@ -4,16 +4,18 @@
 using System;
 public class Entry
     {
-        public string phDate = "";
-        public string phEntry = "";
+        public string ph_date = "";
+        public string ph_entry = "";
+        public string ph_newPrompt = "";
 
         public void GetUserInput()
         {
         Console.Write("Enter date mm/dd/yyyy: ");
-        phDate = Console.ReadLine();
+        ph_date = Console.ReadLine();
 
-        string newPrompt = Prompt.getPrompt();
-        Console.Write(newPrompt);
-        phEntry = Console.ReadLine();
+        
+        ph_newPrompt = Prompt.getPrompt();
+        Console.WriteLine(ph_newPrompt);
+        ph_entry = Console.ReadLine();
         }
     }
