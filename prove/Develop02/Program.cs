@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-
+using System.Collections.Generic; 
 class Program
 {   
     static void Main(string[] args)
@@ -33,8 +33,8 @@ class Program
                 add_entry.Add(ph_entry1.ph_newPrompt);
                 add_entry.Add(ph_entry1.ph_entry);
 
-                
-                ph_entryList.AddRange(add_entry);
+               Journal newEntry = new Journal();
+               newEntry.ph_journalEntries.Add(add_entry);
 
             }
             else if (ph_menuInput == 2)
