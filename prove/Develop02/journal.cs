@@ -7,12 +7,11 @@ using System.Collections.Generic;
 public class Journal 
     {
         public List<List<string>> ph_journalEntries {get; set;}
-        public void GetEntries()
+        public Journal()
         {
-            ph_journalEntries = new List<List<string>>();
+             ph_journalEntries = new List<List<string>>();
         }
-
-        public void writer(string[] args)
+        public void writer()
         {
             using (StreamWriter writer = new StreamWriter("journal.csv"))
             {
@@ -22,7 +21,7 @@ public class Journal
                 }
             }
         }
-        public void reader(string[] args)
+        public void reader()
         {
             using (StreamReader reader = new StreamReader("journal.csv"))
             {

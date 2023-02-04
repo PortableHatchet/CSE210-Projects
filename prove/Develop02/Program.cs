@@ -35,6 +35,8 @@ class Program
 
                Journal newEntry = new Journal();
                newEntry.ph_journalEntries.Add(add_entry);
+               
+               newEntry.writer();
 
             }
             else if (ph_menuInput == 2)
