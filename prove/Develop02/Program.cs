@@ -1,7 +1,7 @@
 // Porter Hatch 
 // Jan 19 2023
 // Journal Program
-
+// Porter
 using System;
 using System.IO;
 using System.Collections.Generic; 
