@@ -5,9 +5,9 @@ using System;
 
 public class Word
 {
-    private string word = "";
-    private bool hidden = false;
-    private bool visible = true;
+    private string ph_word = "";
+    private bool ph_hidden = false;
+    private bool ph_visible = true;
 
     public void hideWord()
     {
@@ -16,6 +16,6 @@ public class Word
 
     public void showWord()
     {
-        
+
     }
 }
