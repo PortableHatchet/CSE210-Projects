@@ -15,7 +15,7 @@ public class Word
     public Word(string word)
     {
         ph_word = word;
-        
+        hideword = false;
     }
     public string getValue() 
     {
@@ -33,9 +33,9 @@ public class Word
     public string to_string(){
         if (hideword)
         {
-            return ph_word;
-        }else {
             return "******";
+        }else {
+            return ph_word;
         }
     }
 }

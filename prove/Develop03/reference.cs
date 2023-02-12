@@ -9,16 +9,34 @@ public class Reference
 {
     private string ph_book;
     private string ph_chapter;
-    private string ph_verses;
+    private string ph_verse;
 
-    private List<string> referenceList;
-    
+
+    public Reference()
+    {
+        ph_book = "";
+        ph_chapter = "";
+        ph_verse = "";
+    }
+
     public Reference(string book, string chapter, string verse)
     {
         ph_book = book;
         ph_chapter = chapter;
-        ph_verses = verse;
-
-        
+        ph_verse = verse;
     }
+    /*
+    public string getBook()
+    {
+        return ph_book;
+    }
+    public string getChapter()
+    {
+        return ph_chapter;
+    }
+    public string getVerse()
+    {
+        return ph_verse;
+    }
+    */
 }

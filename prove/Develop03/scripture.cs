@@ -3,27 +3,42 @@
 
 using System;
 using System.IO;
+using System.Text;
 public class Scripture
 {
     // A list to hold the scritpure that can be displayed
-    private List<List<string>> ph_scripture; // = new List<List<string>>();
+    private List<string> ph_refScripture = new List<string>();
+    private string ph_scripture = "";
 
-    public Scripture(List<string> reference, List<string> verse) 
+    public Scripture(List<string> reference, string verse) 
     {
-        ph_scripture.Add(reference);
-        ph_scripture.Add(verse);
-        //ph_scripture.writer();
-
+        ph_refScripture = reference;
+        ph_scripture = verse;
     }
-    public void writer()
+    public void writer(List<string> reference, string verse)
         {
-            using (StreamWriter writer = new StreamWriter("scriptures.csv"))
+            using (StreamWriter writer = new StreamWriter("scriptures.csv", true))
             {
-            foreach (List<string> row in ph_scripture)
+                writer.WriteLine(string.Join(",", reference) + "," + verse);
+            }    
+            
+        }
+    public void reader()
+        {
+            using (StreamReader reader = new StreamReader("scriptures.csv"))
+            {
+                while (!reader.EndOfStream)
                 {
-                    writer.WriteLine(string.Join(",", row));
+                    string line = reader.ReadLine();
+                    //List<string> row = new List<string>(line.Split(','));
+                    ph_refScripture.Add(line);
+                    //ph_scripture.Add(row[3]);
                 }
+                foreach (string line in ph_refScripture)
+                    Console.WriteLine(line);
             }
+            
+            
         }
 
     
