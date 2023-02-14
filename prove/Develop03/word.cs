@@ -3,6 +3,8 @@
 
 using System; 
 using System.IO;
+
+// takes word nd sets hideWord() as false
 public class Word
 {
     private string ph_word;
@@ -17,24 +19,22 @@ public class Word
         ph_word = word;
         hideword = false;
     }
-    public string getValue() 
-    {
-        return ph_word;
-    }
+    // sets hideWord() as true which will turn the word into '*****'
     public void hideWord()
     {
         hideword = true;
     }
-
     public void showWord()
     {
         hideword = false;
     }
-    public string to_string(){
+    public string toString(){
         if (hideword)
         {
             return "******";
-        }else {
+        }
+        else 
+        {
             return ph_word;
         }
     }

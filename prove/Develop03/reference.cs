@@ -4,7 +4,7 @@
 using System;
 using System.IO;
 
-
+//takes book, chapter, and verse and puts it in a list to be added eventually to the csv
 public class Reference
 {
     private string ph_book;
@@ -25,18 +25,5 @@ public class Reference
         ph_chapter = chapter;
         ph_verse = verse;
     }
-    /*
-    public string getBook()
-    {
-        return ph_book;
-    }
-    public string getChapter()
-    {
-        return ph_chapter;
-    }
-    public string getVerse()
-    {
-        return ph_verse;
-    }
-    */
+    
 }

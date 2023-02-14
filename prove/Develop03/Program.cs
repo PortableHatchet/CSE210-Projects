@@ -13,13 +13,13 @@ class Program
         string ph_scripture = "";
         string menuInput = "0";
 
-        
+        // Intro to the program 
         Console.WriteLine("Welcome to scripture memorizer");
         Console.WriteLine("Would you like to:");
         Console.WriteLine("1. Enter a new scripture to memorize?");
         Console.WriteLine("2. Load a previously entered scripture");
         menuInput = Console.ReadLine();
-
+        // Process for entering a new scripture to memprize 
         if (menuInput == "1") 
         {
             Console.WriteLine("Please enter a scrpture you would like to memorize.");
@@ -57,42 +57,49 @@ class Program
             }
             
             string userInput = "";
+            // While loop that hides a word 
             while (userInput != "quit")
             {
             
                 foreach (Word w in wordObjects)
                 {
-                    Console.Write($"{w.to_string()} ");
+                    Console.Write($"{w.toString()} ");
                 }
                 Random rand = new Random();
                 int randomIndex = rand.Next(0, words.Count);
-                randomIndex = rand.Next(0, words.Count - 1);
+                randomIndex = rand.Next(0, words.Count);
                 Word randomWord = wordObjects[randomIndex];
                 randomWord.hideWord();
-                Console.WriteLine("Press ENTER to continue");
+                Console.WriteLine("Press ENTER to continue, type 'quit' to exit the program. ");
                 userInput = Console.ReadLine();
             }
         }
+        // Pick a scripture that is saved to a csv
         else if (menuInput == "2")
         {
             Console.WriteLine("Which scripture would you like to memorize?");
-            List<Scripture> scriptureList = new List<Scripture>();
+            List<Scripture> ph_scriptureList = new List<Scripture>();
             Scripture ph_newScripture = new Scripture(ph_strRefList, ph_scripture);
-            ph_newScripture.reader();
             
-            List <string> words = new List<string>(ph_scripture.Split(' '));
+            string ph_scriptureSplit = ph_newScripture.reader();
 
+            
+            List<string> words = new List<string>(ph_scriptureSplit.Split(','));
+            
+            
             foreach (string word in words) 
             {
                 Word ph_scriptureWord = new Word(word);
                 
             }
+            
             string userInput = "";
+            // loop that hides a word from loaded scripture 
             while (userInput != "quit")
             {
                 foreach (string word in words)
                 {
-                    Console.Write($"{word} ");
+                    Console.Write($"{word}");
                 }
                 Console.WriteLine("Press ENTER to continue or type 'quit' to exit the program");
                 userInput = Console.ReadLine();
