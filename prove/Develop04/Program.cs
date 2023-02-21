@@ -4,6 +4,37 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop04 World!");
+        Console.WriteLine("Welcome to the Mindfulness Program!");
+        int ph_userInput = -1;
+        
+        while (ph_userInput != 4) 
+        {
+            Console.WriteLine("Please choose an activity to do:");
+            Console.WriteLine("1. Breathing Activity \n2. Reflecting Activity\n3. Listing Activity\n4. Quit");
+            
+            ph_userInput = Convert.ToInt32(Console.ReadLine());
+            if (ph_userInput == 1)
+            {
+                //BreathingActivity newact = new BreathingActivity("breath in", "Porter Hatch", "this is a description", "Duration: 8");
+            }
+            else if (ph_userInput == 2)
+            {
+                //Reflection Activity
+            }
+            else if (ph_userInput == 3)
+            {
+                //Listing Activity
+            }
+            else if(ph_userInput == 4)
+            {
+                break;
+            }
+            else 
+            {
+                Console.WriteLine("Sorry that is an incorrect input");
+            }
+        }
+        
+
     }
 }
