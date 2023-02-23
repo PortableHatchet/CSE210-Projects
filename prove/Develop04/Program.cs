@@ -15,7 +15,11 @@ class Program
             ph_userInput = Convert.ToInt32(Console.ReadLine());
             if (ph_userInput == 1)
             {
-                //BreathingActivity newact = new BreathingActivity("breath in", "Porter Hatch", "this is a description", "Duration: 8");
+                BreathingActivity newBreath = new BreathingActivity("Porter Hatch", "this is a description", "30");
+                newBreath.GetActiveName();
+                newBreath.GetActiveDesc();
+                newBreath.GetActiveTime();
+                newBreath.RunBreath(30);
             }
             else if (ph_userInput == 2)
             {
