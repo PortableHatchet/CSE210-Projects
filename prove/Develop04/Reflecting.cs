@@ -2,13 +2,13 @@ using System;
 
 public class ReflectActivity : Activity
 {
-    private static readonly string[] ponderList = {
+    private static readonly string[] ph_ponderList = {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
         "Think of a time when you helped someone in need.",
         "Think of a time when you did something truly selfless."
         };
-    private static readonly string[] reflectList = {
+    private static readonly string[] ph_reflectList = {
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
         "How did you get started?",
@@ -20,34 +20,37 @@ public class ReflectActivity : Activity
         "How can you keep this experience in mind in the future?"
         };
 
+    //Constructor for ReflectActivity
     public ReflectActivity(string name, string description, string duration) : base(name, description, duration)
     {}
-
+    
+    // Runs the reflecting activity. 
+    // Asks a random question and then follow up questions to ponder every 10 seconds until the alotted time is finished
     public void RunReflect(int time)
     {
-        Random rand = new Random();
+        Random ph_rand = new Random();
 
         Console.WriteLine("Welcome to the Reflecting Activity.");
         Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
 
-        int p_question = rand.Next(0, ponderList.Length);
-        Console.WriteLine(ponderList[p_question]);
+        int ph_ponderQuestion = ph_rand.Next(0, ph_ponderList.Length);
+        Console.WriteLine(ph_ponderList[ph_ponderQuestion]);
 
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(time);
+        DateTime ph_startTime = DateTime.Now;
+        DateTime ph_futureTime = ph_startTime.AddSeconds(time);
         
         
 
         while (true)
         {
-            DateTime currentTime = DateTime.Now;
+            DateTime ph_currentTime = DateTime.Now;
 
-            if (currentTime >= futureTime)
+            if (ph_currentTime >= ph_futureTime)
             {
                 break;
             }
-            int r_question = rand.Next(0, reflectList.Length);
-            Console.WriteLine(reflectList[r_question]);
+            int r_question = ph_rand.Next(0, ph_reflectList.Length);
+            Console.WriteLine(ph_reflectList[r_question]);
             Thread.Sleep(10000);
         }
     }
