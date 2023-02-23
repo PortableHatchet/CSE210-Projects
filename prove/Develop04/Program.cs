@@ -24,6 +24,11 @@ class Program
             else if (ph_userInput == 2)
             {
                 //Reflection Activity
+                ReflectActivity newReflect = new ReflectActivity("Porter Hatch", "this is a description", "30");
+                newReflect.GetActiveName();
+                newReflect.GetActiveDesc();
+                newReflect.GetActiveTime();
+                newReflect.RunReflect(30);
             }
             else if (ph_userInput == 3)
             {

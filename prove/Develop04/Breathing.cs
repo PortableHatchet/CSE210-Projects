@@ -2,21 +2,16 @@ using System;
 
 public class BreathingActivity : Activity
 {
-    private int ph_time;
+    
     public BreathingActivity(string name, string description, string duration) : base(name, description, duration)
     {}
 
-    public int GetTime(string duration)
-    {
-        ph_time = Convert.ToInt32(duration);
-        return ph_time;
-    }
-    public void RunBreath(int duration)
+    public void RunBreath(int time)
     {
         Console.WriteLine("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
         
         DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(duration);
+        DateTime futureTime = startTime.AddSeconds(time);
 
         while (true)
         {
