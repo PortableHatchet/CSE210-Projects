@@ -1,3 +1,6 @@
+//Porter Hatch
+//Feb 23 2023
+
 using System;
 
 public class BreathingActivity : Activity
@@ -22,7 +25,7 @@ public class BreathingActivity : Activity
 
             Thread.Sleep(5000);
             DateTime ph_currentTime = DateTime.Now;
-            
+
             if (ph_currentTime >= ph_futureTime)
             {
                 break;
