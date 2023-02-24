@@ -36,6 +36,11 @@ class Program
             else if (ph_userInput == 3)
             {
                 //Listing Activity
+                ListingActivity newList = new ListingActivity("Porter Hatch", "this is a description", "30");
+                newList.GetActiveName();
+                newList.GetActiveDesc();
+                newList.GetActiveTime();
+                newList.RunListing(30);
             }
             else if(ph_userInput == 4)
             {

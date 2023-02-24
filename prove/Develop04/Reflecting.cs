@@ -31,19 +31,16 @@ public class ReflectActivity : Activity
     // Asks a random question and then follow up questions to ponder every 10 seconds until the alotted time is finished
     public void RunReflect(int time)
     {
-        Random ph_rand = new Random();
+        //RandomPrompt ph_rand = new RandomPrompt();
 
         Console.WriteLine("Welcome to the Reflecting Activity.");
         Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
 
-        int ph_ponderQuestion = ph_rand.Next(0, ph_ponderList.Length);
-        Console.WriteLine(ph_ponderList[ph_ponderQuestion]);
+        GetPrompt(ph_ponderList);
 
         DateTime ph_startTime = DateTime.Now;
         DateTime ph_futureTime = ph_startTime.AddSeconds(time);
         
-        
-
         while (true)
         {
             DateTime ph_currentTime = DateTime.Now;
@@ -52,8 +49,8 @@ public class ReflectActivity : Activity
             {
                 break;
             }
-            int r_question = ph_rand.Next(0, ph_reflectList.Length);
-            Console.WriteLine(ph_reflectList[r_question]);
+    
+            GetPrompt(ph_reflectList);
             Thread.Sleep(10000);
         }
     }
