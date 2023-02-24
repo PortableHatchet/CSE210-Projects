@@ -29,18 +29,21 @@ public class ReflectActivity : Activity
     
     // Runs the reflecting activity. 
     // Asks a random question and then follow up questions to ponder every 10 seconds until the alotted time is finished
-    public void RunReflect(int time)
+    public void RunReflect() 
     {
+        int ph_time = GetTime(GetActiveTime());
         //RandomPrompt ph_rand = new RandomPrompt();
 
-        Console.WriteLine("Welcome to the Reflecting Activity.");
-        Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
-
+        Console.WriteLine($"Welcome to the {GetActiveName()}.");
+        Console.WriteLine(GetActiveDesc());
+        Console.WriteLine("");
+        DisplayAnimation(5);
         GetPrompt(ph_ponderList);
+        Console.WriteLine("");
+        DisplayAnimation(5);
 
         DateTime ph_startTime = DateTime.Now;
-        DateTime ph_futureTime = ph_startTime.AddSeconds(time);
-        
+        DateTime ph_futureTime = ph_startTime.AddSeconds(ph_time);
         while (true)
         {
             DateTime ph_currentTime = DateTime.Now;
@@ -51,7 +54,11 @@ public class ReflectActivity : Activity
             }
     
             GetPrompt(ph_reflectList);
-            Thread.Sleep(10000);
+            Console.WriteLine("");
+            DisplayAnimation(5);
         }
+        Console.WriteLine("");
+        Console.WriteLine($"You completed {ph_time} seconds of the {GetActiveName()}.");
+        Console.WriteLine("");
     }
 }

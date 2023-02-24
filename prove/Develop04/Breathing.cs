@@ -10,30 +10,32 @@ public class BreathingActivity : Activity
     {}
 
     // Runs the breathing activity
-    // Shows "breath in..." for 5 seconds then "breath out..." for 5 seconds until the alotted time is finished
-    public void RunBreath(int time)
+    // Shows "breath in..." for 4 seconds then "breath out..." for 4 seconds until the alotted time is finished
+    public void RunBreath()
     {
-        Console.WriteLine("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
-        
+        int ph_time = GetTime(GetActiveTime());
+        Console.WriteLine($"Welcome to the {GetActiveName()}");
+        Console.WriteLine(GetActiveDesc());
+        DisplayAnimation(3);
+
         DateTime ph_startTime = DateTime.Now;
-        DateTime ph_futureTime = ph_startTime.AddSeconds(time);
+        DateTime ph_futureTime = ph_startTime.AddSeconds(ph_time);
 
         while (true)
         {
-            
-            Console.WriteLine("Breath in ....");
-
-            Thread.Sleep(5000);
             DateTime ph_currentTime = DateTime.Now;
-
             if (ph_currentTime >= ph_futureTime)
             {
                 break;
             }
-
+            Console.WriteLine("Breath in ....");
+            DisplayAnimation(2);
             Console.WriteLine("Breath out ....");
-            Thread.Sleep(5000);
+            DisplayAnimation(2);
         }
+        Console.WriteLine("");
+        Console.WriteLine($"You have completed {ph_time} seconds of the {GetActiveName()}");
+        Console.WriteLine("");
     }
     
 }

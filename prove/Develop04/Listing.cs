@@ -15,17 +15,22 @@ public class ListingActivity : Activity
     public ListingActivity(string name, string description, string duration) : base(name, description, duration)
     {}
 
-    public void RunListing(int time)
+    public void RunListing()
     {
-        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        int ph_time = GetTime(GetActiveTime());
 
-        //RandomPrompt ph_newPrompt = new RandomPrompt();
-        GetPrompt(ph_listingList);
+        Console.WriteLine($"Welcome to the {GetActiveName()}");
+        Console.WriteLine(GetActiveDesc());
+        DisplayAnimation(4);
+
         Console.WriteLine("");
+        GetPrompt(ph_listingList);
         Console.WriteLine("Take a few secons to ponder:");
+        Console.WriteLine("");
+        
         DisplayAnimation(5);
         DateTime ph_startTime = DateTime.Now;
-        DateTime ph_futureTime = ph_startTime.AddSeconds(time);
+        DateTime ph_futureTime = ph_startTime.AddSeconds(ph_time);
         
         DateTime ph_currentTime = DateTime.Now;
         
@@ -34,8 +39,10 @@ public class ListingActivity : Activity
             ph_currentTime = DateTime.Now;
             Console.ReadLine();
         }
-        Console.WriteLine($"You just finished {time} seconds of the Listing Activity");
-        DisplayAnimation(5);
+        Console.WriteLine("");
+        Console.WriteLine($"You just finished {ph_time} seconds of the {GetActiveName()}");
+        Console.WriteLine("");
+        
     }
     
 

@@ -8,6 +8,8 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the Mindfulness Program!");
+        
+        string timeInput = "0";
         int ph_userInput = -1;
         
         while (ph_userInput != 4) 
@@ -18,29 +20,40 @@ class Program
             ph_userInput = Convert.ToInt32(Console.ReadLine());
             if (ph_userInput == 1)
             {
-                BreathingActivity newBreath = new BreathingActivity("Porter Hatch", "this is a description", "30");
-                newBreath.GetActiveName();
-                newBreath.GetActiveDesc();
-                newBreath.GetActiveTime();
-                newBreath.RunBreath(30);
+                Console.WriteLine("How many seconds would you like to spend on this activity? ");
+                timeInput = Console.ReadLine();
+                
+                BreathingActivity newBreath = new BreathingActivity("Breathing Activity",
+                "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.",
+                timeInput);
+                
+                newBreath.RunBreath();
             }
             else if (ph_userInput == 2)
             {
                 //Reflection Activity
-                ReflectActivity newReflect = new ReflectActivity("Porter Hatch", "this is a description", "30");
-                newReflect.GetActiveName();
-                newReflect.GetActiveDesc();
-                newReflect.GetActiveTime();
-                newReflect.RunReflect(30);
+                Console.WriteLine("How many seconds would you like to spend on this activity? ");
+                timeInput = Console.ReadLine();
+
+                ReflectActivity newReflect = new ReflectActivity("Reflect Activity", 
+                "This activity will help you reflect on times in your life" +
+                " when you have shown strength and resilience." + 
+                "This will help you recognize the power you have and how you can use it in other aspects of your life.", 
+                timeInput);
+
+                newReflect.RunReflect();
             }
             else if (ph_userInput == 3)
             {
                 //Listing Activity
-                ListingActivity newList = new ListingActivity("Porter Hatch", "this is a description", "30");
-                newList.GetActiveName();
-                newList.GetActiveDesc();
-                newList.GetActiveTime();
-                newList.RunListing(30);
+                Console.WriteLine("How many seconds would you like to spend on this activity? ");
+                timeInput = Console.ReadLine();
+                
+                ListingActivity newList = new ListingActivity("Listing Activity",
+                "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.", 
+                timeInput);
+                
+                newList.RunListing();
             }
             else if(ph_userInput == 4)
             {

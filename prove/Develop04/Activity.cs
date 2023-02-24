@@ -52,13 +52,13 @@ public class Activity
             ph_currentTime = DateTime.Now;
             
             Console.Write("");
-            Thread.Sleep(250);
+            Thread.Sleep(500);
             Console.Write("-");
-            Thread.Sleep(250);
+            Thread.Sleep(500);
             Console.Write("-"); // Replace it with the - character
-            Thread.Sleep(250);
+            Thread.Sleep(500);
             Console.Write(">");
-            Thread.Sleep(250);
+            Thread.Sleep(500);
             Console.Write("\b \b");
             Console.Write("\b \b");
             Console.Write("\b \b");
