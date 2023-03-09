@@ -4,8 +4,11 @@ public class EternalGoal : Goal
     {}
     
     // Ensures the box never gets checked no matter the amount of 
-    public override bool checkGoal()
+    public override void checkGoal(int goal)
     {
-        return base.checkGoal();
+        if (goal < 1000000)
+        {
+            Console.Write("[ ]");
+        }
     }
 }

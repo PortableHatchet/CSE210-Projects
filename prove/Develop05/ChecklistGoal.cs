@@ -1,11 +1,24 @@
 public class ChecklistGoal : Goal
 {
-    ChecklistGoal(string name, string description, int points) : base(name, description, points)
-    {}
+    private string phNumGoal;
+    ChecklistGoal(string name, string description, int points, string numGoal) : base(name, description, points)
+    {
+        phNumGoal = numGoal;
+    }
+
     // Checks how many times that goal has been completed 
     // if completions are fulfilled, check the box
-    public override bool checkGoal()
+    public override void checkGoal(int goal)
     {
-        return base.checkGoal();
+        int phNumber = Convert.ToInt32(phNumGoal);
+        
+        if (phNumber > goal)
+        {
+            Console.Write("[ ]");
+        }
+        else 
+        {
+            Console.Write("[X]");
+        }
     }
 }

@@ -31,8 +31,16 @@ public abstract class Goal
     }
 
     // checks if the goal is completed, checks a box if completed
-    public virtual bool checkGoal()
+    public  virtual void checkGoal(int goal)
     {
-        return false;
+        if (goal == 1)
+        {
+            Console.Write("[X]");
+        }
+
+        else
+        {
+            Console.Write("[ ]");
+        }
     }
 }
