@@ -1,11 +1,14 @@
+using System.IO;
+using System;
+
 public abstract class Goal
 {
     private string ph_goalName;
     private string ph_goalDescritpion;
-    private int ph_goalPoint;
+    private string ph_goalPoint;
 
     // Constructor for name, description and points for the Goal classes
-    public Goal(string name, string description, int point)
+    public Goal(string name, string description, string point)
     {
         ph_goalName = name;
         ph_goalDescritpion = description;
@@ -25,9 +28,11 @@ public abstract class Goal
     }
 
     // gets and returns the points
-    public int getPoints(int point)
+    public int getPoints(string point)
     {
-        return ph_goalPoint;
+        
+        int numPoints = Convert.ToInt32(ph_goalPoint);
+        return numPoints;
     }
 
     // checks if the goal is completed, checks a box if completed
@@ -41,6 +46,13 @@ public abstract class Goal
         else
         {
             Console.Write("[ ]");
+        }
+    }
+    public virtual void SaveGoal(List<string> goal)
+    {
+        using (StreamWriter writer = new StreamWriter("goals.txt"))
+        {
+            writer.WriteLine(goal);
         }
     }
 }

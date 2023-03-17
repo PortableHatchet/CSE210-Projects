@@ -1,7 +1,7 @@
 public class ChecklistGoal : Goal
 {
     private string phNumGoal;
-    ChecklistGoal(string name, string description, int points, string numGoal) : base(name, description, points)
+    ChecklistGoal(string name, string description, string points, string numGoal, string bonusPoints) : base(name, description, points)
     {
         phNumGoal = numGoal;
     }
