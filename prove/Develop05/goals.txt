@@ -1,1 +1,1 @@
-SimpleList,lolo,this is about lolo,50
+CheckList,[ ],lolo,i dont know anyhting about lolo,100,3,250

@@ -16,19 +16,19 @@ public abstract class Goal
     }
 
     // gets and returns the name
-    public string getName(string name)
+    public string getName()
     {   
         return _phGoalName;
     }
     
     // gets and returns the description
-    public string getDescription(string description)
+    public string getDescription()
     {
         return _phGoalDescritpion;
     }
 
     // gets and returns the points
-    public int getPoints(string point)
+    public int getPoints()
     {
         
         int numPoints = Convert.ToInt32(_phGoalPoint);

@@ -45,14 +45,14 @@ class Program
                     Console.WriteLine("How many bonus will there be when you fully accomplish this goal?");
                     string bonusPoints = Console.ReadLine();
                     
-                    //ChecklistGoal addCheck = new ChecklistGoal(name, description, points, repeat, bonusPoints);
+                    ChecklistGoal addCheck = new ChecklistGoal(name, description, points, repeat, bonusPoints);
                     List<string> checkList = new List<string>();
-                    checkList.Add("Checklist");
-                    checkList.Add("," + name);
-                    checkList.Add("," + description);
-                    checkList.Add("," + points);
-                    checkList.Add("," + repeat);
-                    checkList.Add("," + bonusPoints);
+                    checkList = addCheck.CreateGoal("CheckList");
+                    foreach (string item in checkList)
+                    {
+                        addCheck.SaveGoal(checkList);
+                    }
+                    
                 }
                 else if (phCNG == "3")
                 {
