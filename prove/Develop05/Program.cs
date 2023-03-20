@@ -30,14 +30,12 @@ class Program
                 string points = Console.ReadLine();
                 if (phCNG == "1")
                 {
-                    SimpleGoal addSimple = new SimpleGoal(name, description, points);
                     List<string> simpleList = new List<string>();
-                    simpleList.Add(name);
-                    simpleList.Add("," + description);
-                    simpleList.Add("," + points);
+                    SimpleGoal addSimple = new SimpleGoal(name, description, points);
+                    simpleList = addSimple.CreateGoal("SimpleList");
                     foreach (string item in simpleList)
                     {
-                        Console.Write(item);
+                        addSimple.SaveGoal(simpleList);
                     }
                 }
                 else if (phCNG == "2")
@@ -46,9 +44,10 @@ class Program
                     string repeat = Console.ReadLine();
                     Console.WriteLine("How many bonus will there be when you fully accomplish this goal?");
                     string bonusPoints = Console.ReadLine();
+                    
                     //ChecklistGoal addCheck = new ChecklistGoal(name, description, points, repeat, bonusPoints);
                     List<string> checkList = new List<string>();
-                    checkList.Add("Checklist Goal,");
+                    checkList.Add("Checklist");
                     checkList.Add("," + name);
                     checkList.Add("," + description);
                     checkList.Add("," + points);
