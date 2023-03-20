@@ -30,7 +30,6 @@ public abstract class Goal
     // gets and returns the points
     public int getPoints()
     {
-        
         int numPoints = Convert.ToInt32(_phGoalPoint);
         return numPoints;
     }
@@ -46,7 +45,7 @@ public abstract class Goal
     }
 
     // checks if the goal is completed, checks a box if completed
-    public  virtual void checkGoal(int goal)
+    public  virtual void CheckGoal(int goal)
     {
         if (goal == 1)
         {
@@ -67,5 +66,19 @@ public abstract class Goal
                 writer.Write(item);
             }
         }
+    }
+    public static List<string> ListGoals()
+    {
+        List<string> goalsList = new List<string>();
+        using (StreamReader reader = new StreamReader("goals.txt"))
+        {
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                goalsList.Add(line);
+            }
+            
+        }
+        return goalsList;
     }
 }

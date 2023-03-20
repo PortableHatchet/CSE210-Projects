@@ -7,8 +7,6 @@ class Program
         string phUserInput = "0";
 
         Console.WriteLine("Welcome to your Eternal Quest!");
-        
-        List<List<string>> goalsList;
         while (phUserInput != "6")
         {
             Console.WriteLine("Pick and option:");
@@ -56,12 +54,27 @@ class Program
                 }
                 else if (phCNG == "3")
                 {
-                    //EternalGoal addEternal = new EternalGoal(name, description, points);
+                    EternalGoal addEternal = new EternalGoal(name, description, points);
+                    List<string> eternalList = new List<string>();
+                    eternalList = addEternal.CreateGoal("SimpleList");
+                    foreach (string item in eternalList)
+                    {
+                        addEternal.SaveGoal(eternalList);
+                    }
                 }
             }
             else if (phUserInput == "2")
             {
+                List<string> goalsList = new List<string>();
+                goalsList = Goal.ListGoals();
+                int listCounter = 1;
                 Console.WriteLine("List Goals");
+                foreach (string line in goalsList)
+                {
+                    Console.Write(listCounter + ". ");
+                    Console.WriteLine(string.Join(",", line.Split(",")));
+                    listCounter++;
+                }
             }
             else if (phUserInput == "3")
             {
