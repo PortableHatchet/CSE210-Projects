@@ -72,13 +72,18 @@ class Program
                 foreach (string line in goalsList)
                 {
                     Console.Write(listCounter + ". ");
-                    Console.WriteLine(string.Join(",", line.Split(",")));
+                    Console.Write(string.Join(",", line.Split(",")[1]));
+                    Console.Write(string.Join(",", line.Split(",")[2]));
+                    Console.Write("(");
+                    Console.Write(string.Join(",", line.Split(",")[3]));
+                    Console.Write(")\n");
+
                     listCounter++;
                 }
             }
             else if (phUserInput == "3")
             {
-                Console.WriteLine("Save Goals");
+                Console.WriteLine("Goals Saved!");
             }
             else if (phUserInput == "4")
             {
@@ -86,6 +91,7 @@ class Program
             }
             else if (phUserInput == "5")
             {
+
                 Console.WriteLine("Record event");
             }
             else if (phUserInput == "6")
