@@ -28,19 +28,19 @@ public abstract class Goal
     }
 
     // gets and returns the points
-    public int getPoints()
+    public string getPoints()
     {
-        int numPoints = Convert.ToInt32(_phGoalPoint);
-        return numPoints;
+        //int numPoints = Convert.ToInt32(_phGoalPoint);
+        return _phGoalPoint;
     }
     public virtual List<string> CreateGoal(string listName)
     {
         List<string> goalList = new List<string>();
         goalList.Add(listName);
-        goalList.Add(",[ ]");
-        goalList.Add("," + _phGoalName);
-        goalList.Add("," + _phGoalDescritpion);
-        goalList.Add("," + _phGoalPoint);
+        goalList.Add("[ ]");
+        goalList.Add(_phGoalName);
+        goalList.Add(_phGoalDescritpion);
+        goalList.Add(_phGoalPoint);
         return goalList;
     }
 
@@ -57,17 +57,17 @@ public abstract class Goal
             Console.Write("[ ]");
         }
     }
-    public virtual void SaveGoal(List<string> goal)
+    public static void SaveGoal(List<List<string>> goal)
     {
         using (StreamWriter writer = new StreamWriter("goals.txt"))
         {
-            foreach (string item in goal)
+            foreach (List<string> item in goal)
             {
-                writer.Write(item);
+                writer.WriteLine(string.Join(",", item));
             }
         }
     }
-    public static List<string> ListGoals()
+    public static List<string> LoadGoals()
     {
         List<string> goalsList = new List<string>();
         using (StreamReader reader = new StreamReader("goals.txt"))

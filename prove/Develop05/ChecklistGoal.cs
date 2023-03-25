@@ -12,12 +12,12 @@ public class ChecklistGoal : Goal
     {
         List<string> goalList = new List<string>();
         goalList.Add(listName);
-        goalList.Add(",[ ]");
-        goalList.Add("," + getName());
-        goalList.Add("," + getDescription());
-        goalList.Add("," + getPoints());
-        goalList.Add("," + _phRepeat);
-        goalList.Add("," + _phBonusPoints);
+        goalList.Add("[ ]");
+        goalList.Add(getName());
+        goalList.Add(getDescription());
+        goalList.Add(getPoints());
+        goalList.Add(_phRepeat);
+        goalList.Add(_phBonusPoints);
         return goalList;
     }
 

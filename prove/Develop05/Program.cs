@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        List<List<string>> goalsList = new List<List<string>>();
+
         string phUserInput = "0";
 
         Console.WriteLine("Welcome to your Eternal Quest!");
@@ -13,6 +15,7 @@ class Program
             Console.WriteLine("1. Create a new goal \n2. List goals \n3. Save goals \n4. Load goals \n5. Record Event \n6. Quit");
             phUserInput = Console.ReadLine();
             
+
             if (phUserInput == "1")
             {
                 Console.WriteLine("What type of goal would you like to set? \n1. Simple Goal \n2. Checklist Goal \n3. Eternal Goal");
@@ -31,10 +34,11 @@ class Program
                     List<string> simpleList = new List<string>();
                     SimpleGoal addSimple = new SimpleGoal(name, description, points);
                     simpleList = addSimple.CreateGoal("SimpleList");
-                    foreach (string item in simpleList)
-                    {
-                        addSimple.SaveGoal(simpleList);
-                    }
+                    goalsList.Add(simpleList);
+                    //foreach (string item in simpleList)
+                    //{
+                    //    addSimple.SaveGoal(simpleList);
+                    //}
                 }
                 else if (phCNG == "2")
                 {
@@ -46,44 +50,57 @@ class Program
                     ChecklistGoal addCheck = new ChecklistGoal(name, description, points, repeat, bonusPoints);
                     List<string> checkList = new List<string>();
                     checkList = addCheck.CreateGoal("CheckList");
-                    foreach (string item in checkList)
-                    {
-                        addCheck.SaveGoal(checkList);
-                    }
+                    goalsList.Add(checkList);
+                    //foreach (string item in checkList)
+                    //{
+                        //addCheck.SaveGoal(checkList);
+                    //}
                     
                 }
                 else if (phCNG == "3")
                 {
                     EternalGoal addEternal = new EternalGoal(name, description, points);
                     List<string> eternalList = new List<string>();
-                    eternalList = addEternal.CreateGoal("SimpleList");
-                    foreach (string item in eternalList)
-                    {
-                        addEternal.SaveGoal(eternalList);
-                    }
+                    eternalList = addEternal.CreateGoal("EternalList");
+                    goalsList.Add(eternalList);
+                    //foreach (string item in eternalList)
+                    //{
+                    //    addEternal.SaveGoal(eternalList);
+                    //}
                 }
             }
             else if (phUserInput == "2")
             {
-                List<string> goalsList = new List<string>();
-                goalsList = Goal.ListGoals();
                 int listCounter = 1;
                 Console.WriteLine("List Goals");
-                foreach (string line in goalsList)
+                foreach (List<string> innerList in goalsList)
                 {
                     Console.Write(listCounter + ". ");
-                    Console.Write(string.Join(",", line.Split(",")[1]));
-                    Console.Write(string.Join(",", line.Split(",")[2]));
-                    Console.Write("(");
-                    Console.Write(string.Join(",", line.Split(",")[3]));
-                    Console.Write(")\n");
-
+                    for (int i = 1; i <= 4; i++)
+                    {
+                        if (i == 3)
+                        {
+                            Console.Write("(" + innerList[i] + ") ");
+                        }
+                        else if (i == 4)
+                        {
+                            Console.Write("Points: " + innerList[i]);
+                        }
+                        else
+                        {
+                            Console.Write(innerList[i] + " ");
+                        }
+                    }
+                    Console.WriteLine();
                     listCounter++;
                 }
+                
             }
             else if (phUserInput == "3")
             {
+                Goal.SaveGoal(goalsList);
                 Console.WriteLine("Goals Saved!");
+                Console.WriteLine();
             }
             else if (phUserInput == "4")
             {

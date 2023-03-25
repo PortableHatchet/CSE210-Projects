@@ -1,4 +1,3 @@
-CheckList,[ ],lolo,i dont know anyhting about lolo,100,3,250
-CheckList,[ ],lolo,i dont know anyhting about lolo,100,3,250
-CheckList,[ ],lolo,i dont know anyhting about lolo,100,3,250
-CheckList,[ ],lolo,i dont know anyhting about lolo,100,3,250
+SimpleList,[ ],lularipe,it was a rank fart,25
+CheckList,[ ],listy fisty,you already know ,400,2,50
+EternalList,[ ],eternal lessons,crash course on eternity,200
