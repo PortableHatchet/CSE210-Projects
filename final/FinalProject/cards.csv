@@ -1,0 +1,15 @@
+C,Goblin,Creature,1,1,1
+C,InsectSwarm,Creature,1,1,1
+C,GiantSpider,Creature,2,2,2
+C,Wolf,Creature,2,3,1
+C,Yeti,Creature,3,2,4
+C,Harpy,Creature,3,3,3
+C,Dragon,Creature,5,5,5
+C,Basilisk,Creature,5,6,4
+S,Fireball,Deal 2 damage to your opponent,1,2
+S,Ice Spike,Deal 2 damage to a random opposing creature,1,2
+S,Earthquake,Deal 2 damage to all creatures and opponenets,2,2
+S,ArcaneMissiles, deal 3 damage to your opponent,2,3
+S,RainFire,Deal 4 damage to all creatures and your opponent,4,4
+E,SpellEnhancer,Plus 1 damage to your next spell you play this turn,2,1
+E,CreatureEnhancer,Plus 1 damage and health to the next creature you play this turn,2,1

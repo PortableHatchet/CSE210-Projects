@@ -4,34 +4,68 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Set up player names
-        string player1 = "Player 1";
-        string player2 = "Player 2";
+        List<string>
+        string phUserInput = "0"; 
+        
+        while (phUserInput != "3")
+        {
+            Console.WriteLine("Welcome to Battle Arena!");
+            Console.WriteLine("Would you like to:\n1. Start a game?\n2. Read through the cards?\n3. Quit");
+            phUserInput = Console.ReadLine();
+            if (phUserInput == "1")
+            {
+                
+                
+                bool continueLoop = true;
+                while (continueLoop)
+                {
+                    int playerHealth = 10;
+                    int cpuHealth = 10;
+                    int mana = 1;
+                    if (playerHealth <= 0)
+                    {
+                        continueLoop = false;
+                    }
+                    else if (cpuHealth <= 0)
+                    {
+                        continueLoop = false;
+                    }
+                    else
+                    {
+                        Console.ReadLine();
+                        mana++;
+                    }
+                }
 
-        // Set up player health
-        int player1Health = 20;
-        int player2Health = 20;
+            }
+            else if (phUserInput == "2")
+            {
+                using (StreamReader reader = new StreamReader("cards.csv"))
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    string[] values = line.Split(",");
+                    string type = values[0].ToString();
 
-        // Set up player hands
-        string[] player1Hand = { "Card 1", "Card 2", "Card 3" };
-        string[] player2Hand = { "Card 1", "Card 2", "Card 3" };
-
-        // Set up player boards
-        string[] player1Board = new string[5];
-        string[] player2Board = new string[5];
-
-        // Display initial game state
-        Console.WriteLine($"{player1}'s Health: {player1Health}");
-        Console.WriteLine($"Hand: {string.Join(", ", player1Hand)}");
-        Console.WriteLine("Board:");
-        Console.WriteLine(string.Join(" | ", player1Board));
-        Console.WriteLine();
-        Console.WriteLine($"{player2}'s Health: {player2Health}");
-        Console.WriteLine($"Hand: {string.Join(", ", player2Hand)}");
-        Console.WriteLine("Board:");
-        Console.WriteLine(string.Join(" | ", player2Board));
-
-        // Wait for user input
-        Console.ReadLine();
+                    Console.Write(values[1] + " | ");
+                    Console.Write(values[2] + " | ");
+                    Console.Write("Cost: " + values[3] + " | ");
+                    Console.Write("Damage: "+ values[4]);
+                    if (type == "C")
+                    {
+                        Console.Write(" | Health: " + values[5]);
+                    }
+                    Console.WriteLine();
+                }
+            }
+            else if (phUserInput == "3")
+            {
+                Console.WriteLine("see ya");
+            }
+            else 
+            {
+                Console.WriteLine("Sorry that is an incorrect input. Please pick a correct one.");
+            }
+        }
     }
 }
