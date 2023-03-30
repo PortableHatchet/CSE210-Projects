@@ -29,32 +29,35 @@ public class Card
     {
         return _phCardDamage;
     }
-    public virtual void DealDamage(int target, int damage)
+    public virtual int DealDamage(int target, int damage)
     {  
-        int newPlayerHealth;
-        int newCreatureHealth;
+        int newPlayerHealth = 0;
+        int newCreatureHealth = 0;
         if (target == 1)
         {
             newPlayerHealth = target - damage;
+            return newPlayerHealth;
         }
         else if (target == 2)
         {
             newCreatureHealth = target - damage;
+            return newCreatureHealth;
         }
+        return 0;
+        
     }
-    public static List<string[]> ReadCards()
+    public static List<List<string>> ReadCards()
     {
-        List<string[]> cardDeck = new List<string[]>();
+        
+        List<List<string>> cardDeck = new List<List<string>>();
         using (StreamReader reader = new StreamReader("cards.csv"))
         {
-             while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    string[] values = line.Split(",");
-                    string type = values[0].ToString();
-
-                    cardDeck.Add(values);
-                }
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                List<string> cardRow = line.Split(',').ToList();
+                cardDeck.Add(cardRow);
+            }
         }
         return cardDeck;
     }

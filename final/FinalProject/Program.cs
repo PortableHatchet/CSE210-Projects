@@ -4,9 +4,54 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<string[]> readCards = new List<string[]>();
+        List<List<string>> readCards = new List<List<string>>();
+
         List<Card> playerDeck = new List<Card>();
 
+        readCards = Card.ReadCards();
+
+        foreach (List<string> card in readCards)
+        {   
+            //foreach (string cardPart in card)
+            {
+                string cardType = card[0];
+
+                string name = card[1];
+                //string nameString = name.ToString();
+
+                string description = card[2];
+                //string descriptionString = description.ToString();
+
+                string cost = card[3];
+                int costInt = Convert.ToInt32(cost);
+
+                string damage = card[4];
+                int damageInt = Convert.ToInt32(damage);
+                
+                int healthInt = 0;
+                if (card.Count >= 6)
+                {
+                    string health = card[5];
+                    healthInt = Convert.ToInt32(health);
+                }
+                
+
+                switch (cardType)
+                {
+                    case "C":
+                        playerDeck.Add(new CreatureCard(name, description, costInt, damageInt, healthInt));
+                        break;
+                    case "S":
+                        playerDeck.Add(new SpellCard(name, description, costInt, damageInt));
+                        break;
+                    case "E":
+                        playerDeck.Add(new EnhancementCard(name, description, costInt, damageInt));
+                        break;
+                    default:
+                        throw new ArgumentException($"Unknown card type: {cardType}");
+                }
+            }
+        }
         string phUserInput = "0"; 
         
         while (phUserInput != "3")
@@ -15,62 +60,37 @@ class Program
             Console.WriteLine("Would you like to:\n1. Start a game?\n2. Read through the cards?\n3. Quit");
             phUserInput = Console.ReadLine();
             if (phUserInput == "1")
-            {
-                
-                
-                bool continueLoop = true;
-                while (continueLoop)
+            {        
+                List<Card> oppCreatureOnBoard = new List<Card>();
+                List<Card> creatureOnBoard = new List<Card>();
+
+                bool gameLoop = true;
+                while (gameLoop)
                 {
                     int playerHealth = 10;
                     int cpuHealth = 10;
                     int mana = 1;
                     if (playerHealth <= 0)
                     {
-                        continueLoop = false;
+                        gameLoop = false;
                     }
                     else if (cpuHealth <= 0)
                     {
-                        continueLoop = false;
+                        gameLoop = false;
                     }
                     else
                     {
-                        readCards = Card.ReadCards();
-                        foreach (string[] cardArray in readCards)
-                        {    
-                            foreach (string cardString in cardArray)
-                            {
-                                char cardType = cardString[0];
-
-                                char name = cardString[1];
-                                string nameString = name.ToString();
-
-                                char description = cardString[2];
-                                string descriptionString = description.ToString();
-
-                                char cost = cardString[3];
-                                int costInt = Convert.ToInt32(cost);
-
-                                char damage = cardString[4];
-                                int damageInt = Convert.ToInt32(damage);
-
-                                char health = cardString[5];
-                                int healthInt = Convert.ToInt32(health);
-
-                                switch (cardType)
-                                {
-                                    case 'c':
-                                        playerDeck.Add(new CreatureCard(nameString, descriptionString, costInt, damageInt, healthInt));
-                                        break;
-                                    case 's':
-                                        playerDeck.Add(new SpellCard(nameString, descriptionString, costInt, damageInt));
-                                        break;
-                                    case 'e':
-                                        playerDeck.Add(new EnhancementCard(nameString, descriptionString, costInt, damageInt));
-                                        break;
-                                    default:
-                                        throw new ArgumentException($"Unknown card type: {cardType}");
-                                }
-                            }
+                        Console.WriteLine("Lifetotal: " + playerHealth);
+                        Console.WriteLine("Opponent Lifetotal: " + cpuHealth);
+                        Console.WriteLine("Mana: " + mana);
+                        Console.WriteLine();
+                        Console.WriteLine("Board: ");
+                        Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
+                        Console.WriteLine("     Yours: " + creatureOnBoard);
+                        Console.WriteLine("Cards in Hand: ");
+                        foreach (Card card in playerDeck)
+                        {
+                            Console.WriteLine(card.GetName());
                         }
                         Console.ReadLine();
                         mana++;
