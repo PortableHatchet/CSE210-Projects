@@ -1,17 +1,24 @@
 public class Card 
 {
+    private string _phCardType;
     private string _phCardName;
     private string _phCardDescription;
     private int _phCost;
     private int _phCardDamage;
     
 
-    public Card(string name, string description, int cost, int damage)
+    public Card(string type, string name, string description, int cost, int damage)
     {
+        _phCardType = type;
         _phCardName = name;
         _phCardDescription = description;
         _phCost = cost;
         _phCardDamage = damage;
+    }
+
+    public string GetCardType()
+    {
+        return _phCardType;
     }
     public string GetName()
     {
@@ -31,19 +38,9 @@ public class Card
     }
     public virtual int DealDamage(int target, int damage)
     {  
-        int newPlayerHealth = 0;
-        int newCreatureHealth = 0;
-        if (target == 1)
-        {
-            newPlayerHealth = target - damage;
-            return newPlayerHealth;
-        }
-        else if (target == 2)
-        {
-            newCreatureHealth = target - damage;
-            return newCreatureHealth;
-        }
-        return 0;
+        int newCPUHealth;
+        newCPUHealth = target - damage;
+        return newCPUHealth;
         
     }
     public static List<List<string>> ReadCards()
@@ -60,5 +57,17 @@ public class Card
             }
         }
         return cardDeck;
+    }
+
+    public virtual void PlayCard(int cost, int mana, List<Card> playerHand, int index)
+    {
+        if (cost <= mana)
+        {
+            playerHand.RemoveAt(index);
+        }
+        else
+        {
+            Console.WriteLine("Sorry you do not have enough mana for that card");
+        }
     }
 }

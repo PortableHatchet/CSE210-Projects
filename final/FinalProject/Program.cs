@@ -14,7 +14,7 @@ class Program
         {   
             //foreach (string cardPart in card)
             {
-                string cardType = card[0];
+                string type = card[0];
 
                 string name = card[1];
                 //string nameString = name.ToString();
@@ -34,19 +34,19 @@ class Program
                     string health = card[5];
                     healthInt = Convert.ToInt32(health);
                 }
-                switch (cardType)
+                switch (type)
                 {
                     case "C":
-                        playerDeck.Add(new CreatureCard(name, description, costInt, damageInt, healthInt));
+                        playerDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));
                         break;
                     case "S":
-                        playerDeck.Add(new SpellCard(name, description, costInt, damageInt));
+                        playerDeck.Add(new SpellCard(type, name, description, costInt, damageInt));
                         break;
                     case "E":
-                        playerDeck.Add(new EnhancementCard(name, description, costInt, damageInt));
+                        playerDeck.Add(new EnhancementCard(type, name, description, costInt, damageInt));
                         break;
                     default:
-                        throw new ArgumentException($"Unknown card type: {cardType}");
+                        throw new ArgumentException($"Unknown card type: {type}");
                 }
             }
         }
@@ -54,9 +54,9 @@ class Program
         
         while (phUserInput != "3")
         {
-            Console.WriteLine("Welcome to Battle Arena!");
-            Console.WriteLine("Would you like to:\n1. Start a game?\n2. Read through the cards?\n3. Quit");
-            phUserInput = Console.ReadLine();
+        Console.WriteLine("Welcome to Battle Arena!");
+        Console.WriteLine("Would you like to:\n1. Start a game?\n2. Read through the cards?\n3. Quit");
+            phUserInput =Console.ReadLine();
             if (phUserInput == "1")
             {        
                 List<Card> oppCreatureOnBoard = new List<Card>();
@@ -64,6 +64,11 @@ class Program
 
                 List<Card> playerHand = new List<Card>();
                 Random rng = new Random();
+
+                bool gameLoop = true;
+                int playerHealth = 10;
+                int cpuHealth = 10;
+                int mana = 1;
 
                 int handCount = 0;
                 while (playerDeck.Count > 0)
@@ -79,39 +84,51 @@ class Program
                     }
                 }
 
-                bool gameLoop = true;
-                int playerHealth = 10;
-                int cpuHealth = 10;
-                int mana = 1;
                 while (gameLoop)
                 {
-                    
-                    if (playerHealth <= 0)
+                    Console.WriteLine("Lifetotal: " + playerHealth);
+                    Console.WriteLine("Opponent Lifetotal: " + cpuHealth);
+                    Console.WriteLine("Mana: " + mana);
+                    Console.WriteLine();
+                    Console.WriteLine("Board: ");
+                    Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
+                    Console.WriteLine("     Yours: " + creatureOnBoard);
+                    Console.WriteLine("Cards in Hand: ");
+                    Player.ShowHand(playerHand);
+
+                    Console.WriteLine("What card would you like to play?");
+                    int playIndex = Convert.ToInt32(Console.ReadLine());
+                    Card playCard = playerHand[playIndex];
+                    string cardType = playCard.GetCardType();
+                    if (cardType == "C")
                     {
-                        gameLoop = false;
-                    }
-                    else if (cpuHealth <= 0)
-                    {
-                        gameLoop = false;
+                        creatureOnBoard.Add(playCard);
                     }
                     else
                     {
-                        Console.WriteLine("Lifetotal: " + playerHealth);
-                        Console.WriteLine("Opponent Lifetotal: " + cpuHealth);
-                        Console.WriteLine("Mana: " + mana);
-                        Console.WriteLine();
-                        Console.WriteLine("Board: ");
-                        Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
-                        Console.WriteLine("     Yours: " + creatureOnBoard);
-                        Console.WriteLine("Cards in Hand: ");
-                        Player.ShowHand(playerHand);
+                        cpuHealth = playCard.DealDamage(cpuHealth, playCard.GetDamage());
                     }
-                    Console.ReadLine();
+                    
+                    playCard.PlayCard(playCard.GetCost(), mana, playerHand, playIndex);
+
                     int index = rng.Next(playerDeck.Count);
                     Card item = playerDeck[index];
                     playerHand.Add(item);
                     playerDeck.RemoveAt(index);
                     mana++;
+                    if (playerHealth <= 0)
+                    {
+                        Console.WriteLine("Sorry you lost!");
+                        Console.WriteLine();
+
+                        gameLoop = false;
+                    }
+                    else if (cpuHealth <= 0)
+                    {
+                        Console.WriteLine("Congratulations you won!");
+                        Console.WriteLine();
+                        gameLoop = false;
+                    }
                 }
 
             }
@@ -124,24 +141,24 @@ class Program
                     string[] values = line.Split(",");
                     string type = values[0].ToString();
 
-                    Console.Write(values[1] + " | ");
-                    Console.Write(values[2] + " | ");
-                    Console.Write("Cost: " + values[3] + " | ");
-                    Console.Write("Damage: "+ values[4]);
+                Console.Write(values[1] + " | ");
+                Console.Write(values[2] + " | ");
+                Console.Write("Cost: " + values[3] + " | ");
+                Console.Write("Damage: "+ values[4]);
                     if (type == "C")
                     {
-                        Console.Write(" | Health: " + values[5]);
+                    Console.Write(" | Health: " + values[5]);
                     }
-                    Console.WriteLine();
+                Console.WriteLine();
                 }
             }
             else if (phUserInput == "3")
             {
-                Console.WriteLine("see ya");
+            Console.WriteLine("see ya");
             }
             else 
             {
-                Console.WriteLine("Sorry that is an incorrect input. Please pick a correct one.");
+            Console.WriteLine("Sorry that is an incorrect input. Please pick a correct one.");
             }
         }
     }
