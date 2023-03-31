@@ -34,8 +34,6 @@ class Program
                     string health = card[5];
                     healthInt = Convert.ToInt32(health);
                 }
-                
-
                 switch (cardType)
                 {
                     case "C":
@@ -64,12 +62,30 @@ class Program
                 List<Card> oppCreatureOnBoard = new List<Card>();
                 List<Card> creatureOnBoard = new List<Card>();
 
+                List<Card> playerHand = new List<Card>();
+                Random rng = new Random();
+
+                int handCount = 0;
+                while (playerDeck.Count > 0)
+                {
+                    int index = rng.Next(playerDeck.Count);
+                    Card item = playerDeck[index];
+                    playerHand.Add(item);
+                    playerDeck.RemoveAt(index);
+                    handCount++;
+                    if (handCount == 4)
+                    {
+                        break;
+                    }
+                }
+
                 bool gameLoop = true;
+                int playerHealth = 10;
+                int cpuHealth = 10;
+                int mana = 1;
                 while (gameLoop)
                 {
-                    int playerHealth = 10;
-                    int cpuHealth = 10;
-                    int mana = 1;
+                    
                     if (playerHealth <= 0)
                     {
                         gameLoop = false;
@@ -88,13 +104,14 @@ class Program
                         Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
                         Console.WriteLine("     Yours: " + creatureOnBoard);
                         Console.WriteLine("Cards in Hand: ");
-                        foreach (Card card in playerDeck)
-                        {
-                            Console.WriteLine(card.GetName());
-                        }
-                        Console.ReadLine();
-                        mana++;
+                        Player.ShowHand(playerHand);
                     }
+                    Console.ReadLine();
+                    int index = rng.Next(playerDeck.Count);
+                    Card item = playerDeck[index];
+                    playerHand.Add(item);
+                    playerDeck.RemoveAt(index);
+                    mana++;
                 }
 
             }
