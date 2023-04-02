@@ -7,11 +7,12 @@ class Program
         List<List<string>> goalsList = new List<List<string>>();
 
         string phUserInput = "0";
-
+        int totalPoints = 0;
         Console.WriteLine("Welcome to your Eternal Quest!");
         while (phUserInput != "6")
         {
             Console.WriteLine("Pick and option:");
+            Console.WriteLine("Points: " + totalPoints);
             Console.WriteLine("1. Create a new goal \n2. List goals \n3. Save goals \n4. Load goals \n5. Record Event \n6. Quit");
             phUserInput = Console.ReadLine();
             
@@ -71,45 +72,30 @@ class Program
             }
             else if (phUserInput == "2")
             {
-                int listCounter = 1;
                 Console.WriteLine("List Goals");
-                foreach (List<string> innerList in goalsList)
-                {
-                    Console.Write(listCounter + ". ");
-                    for (int i = 1; i <= 4; i++)
-                    {
-                        if (i == 3)
-                        {
-                            Console.Write("(" + innerList[i] + ") ");
-                        }
-                        else if (i == 4)
-                        {
-                            Console.Write("Points: " + innerList[i]);
-                        }
-                        else
-                        {
-                            Console.Write(innerList[i] + " ");
-                        }
-                    }
-                    Console.WriteLine();
-                    listCounter++;
-                }
-                
+                Goal.ListGoals(goalsList);
             }
             else if (phUserInput == "3")
             {
-                Goal.SaveGoal(goalsList);
+                Goal.SaveGoals(goalsList);
                 Console.WriteLine("Goals Saved!");
                 Console.WriteLine();
             }
             else if (phUserInput == "4")
             {
-                Console.WriteLine("Load Goals");
+                Console.WriteLine("Load Goals: ");
+                goalsList = Goal.LoadGoals();
             }
             else if (phUserInput == "5")
             {
-
+                int eventCheck = 0;
                 Console.WriteLine("Record event");
+                Goal.ListGoals(goalsList);
+                Console.WriteLine("What goal would you like to record?");
+                eventCheck = Convert.ToInt32(Console.ReadLine());
+                List<string> selectedGoal = goalsList[eventCheck];
+                string goalType = selectedGoal[0];
+                Goal.CheckGoal(goalsList, eventCheck, totalPoints);
             }
             else if (phUserInput == "6")
             {

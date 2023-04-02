@@ -23,17 +23,32 @@ public class ChecklistGoal : Goal
 
     // Checks how many times that goal has been completed 
     // if completions are fulfilled, check the box
-    public override void CheckGoal(int goal)
+    public  virtual void CheckGoal(List<List<string>> goalsList, int eventCheck, int points, int bonusPoints)
     {
-        int phNumber = Convert.ToInt32(_phRepeat);
+        List<string> selectedGoal = goalsList[eventCheck];
+        string goalType = selectedGoal[0];
+        int repeat = Convert.ToInt32(selectedGoal[5]);
+        int goalPoints = Convert.ToInt32(selectedGoal[4]);
+
+        if (goalType == "CheckList")
+        {
+            if (repeat > 1)
+            {
+                repeat -= 1;
+                points += goalPoints;
+                selectedGoal[5] = Convert.ToString(repeat);
+
+            }
+            else
+            {
+                repeat = 0;
+                selectedGoal[1] = "[X]";
+                selectedGoal[5] = Convert.ToString(repeat);
+            }
+        }
+
+       
         
-        if (phNumber > goal)
-        {
-            Console.Write("[ ]");
-        }
-        else 
-        {
-            Console.Write("[X]");
-        }
+        
     }
 }

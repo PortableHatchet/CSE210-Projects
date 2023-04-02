@@ -4,11 +4,10 @@ public class EternalGoal : Goal
     {}
     
     // Ensures the box never gets checked no matter the amount of 
-    public override void CheckGoal(int goal)
+    public virtual void CheckGoal(List<List<string>> goalsList, int eventCheck, int points)
     {
-        if (goal < 1000000)
-        {
-            Console.Write("[ ]");
-        }
+        List<string> selectedGoal = goalsList[eventCheck];
+        int goalPoints = Convert.ToInt32(selectedGoal[4]);
+        points += goalPoints;
     }
 }

@@ -45,19 +45,15 @@ public abstract class Goal
     }
 
     // checks if the goal is completed, checks a box if completed
-    public  virtual void CheckGoal(int goal)
+    public static void CheckGoal(List<List<string>> goalsList, int eventCheck, int totalPoints)
     {
-        if (goal == 1)
-        {
-            Console.Write("[X]");
-        }
-
-        else
-        {
-            Console.Write("[ ]");
-        }
+        List<string> selectedGoal = goalsList[eventCheck - 1];
+        string goalType = selectedGoal[0];
+        selectedGoal[1] = "[X]";
+        int goalPoints = Convert.ToInt32(selectedGoal[4]);
+        totalPoints += goalPoints;
     }
-    public static void SaveGoal(List<List<string>> goal)
+    public static void SaveGoals(List<List<string>> goal)
     {
         using (StreamWriter writer = new StreamWriter("goals.txt"))
         {
@@ -67,18 +63,45 @@ public abstract class Goal
             }
         }
     }
-    public static List<string> LoadGoals()
+    public static List<List<string>> LoadGoals()
     {
-        List<string> goalsList = new List<string>();
+        List<List<string>> goalsList = new List<List<string>>();
         using (StreamReader reader = new StreamReader("goals.txt"))
         {
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
-                goalsList.Add(line);
+                List<string> lineList = line.Split(",").ToList<string>();
+                goalsList.Add(lineList);
             }
             
         }
         return goalsList;
+    }
+    public static void ListGoals(List<List<string>> goalsList)
+    {
+        int counter = 1;
+        foreach (List<string> innerList in goalsList)
+                {
+                    
+                    Console.Write(counter + ". ");
+                    for (int i = 1; i <= 4; i++)
+                    {
+                        if (i == 3)
+                        {
+                            Console.Write("(" + innerList[i] + ") ");
+                        }
+                        else if (i == 4)
+                        {
+                            Console.Write("Points: " + innerList[i]);
+                        }
+                        else
+                        {
+                            Console.Write(innerList[i] + " ");
+                        }
+                    }
+                    Console.WriteLine();
+                    counter++;
+                }
     }
 }
