@@ -7,4 +7,15 @@ public class CreatureCard : Card
     {
     _phHealth = health;
     }
+    public int GetHealth()
+    {
+        return _phHealth;
+    }
+
+    public override int DealDamage(int target, int damage)
+    { 
+        int newCreatureHealth;
+        newCreatureHealth = target - damage;
+        return newCreatureHealth;
+    }
 }

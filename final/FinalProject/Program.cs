@@ -86,6 +86,7 @@ class Program
 
                 while (gameLoop)
                 {
+                    string creatureAtt = "0";
                     Console.WriteLine("Lifetotal: " + playerHealth);
                     Console.WriteLine("Opponent Lifetotal: " + cpuHealth);
                     Console.WriteLine("Mana: " + mana);
@@ -93,6 +94,24 @@ class Program
                     Console.WriteLine("Board: ");
                     Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
                     Console.WriteLine("     Yours: " + creatureOnBoard);
+
+                    Console.WriteLine("Would you like to attack with a creature? \n1. Yes\n2. No");
+                    creatureAtt = Console.ReadLine();
+                    if (creatureAtt == "1")
+                    {
+                        Console.WriteLine("What creature would you like to attack with?");
+                        int pickCreature = Convert.ToInt32(Console.ReadLine());
+                        Card creatureCard = creatureOnBoard[pickCreature];
+                        int creatureDamage = creatureCard.GetDamage();
+
+                        if (oppCreatureOnBoard.Count > 0)
+                        {
+                            Card oppCreature = oppCreatureOnBoard[0];
+                            int targetHealth = oppCreature.GetHealth();
+                            creatureCard.DealDamage(targetHealth, creatureDamage);
+                        }
+                    }
+
                     Console.WriteLine("Cards in Hand: ");
                     Player.ShowHand(playerHand);
 

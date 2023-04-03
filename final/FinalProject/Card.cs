@@ -41,7 +41,6 @@ public class Card
         int newCPUHealth;
         newCPUHealth = target - damage;
         return newCPUHealth;
-        
     }
     public static List<List<string>> ReadCards()
     {
