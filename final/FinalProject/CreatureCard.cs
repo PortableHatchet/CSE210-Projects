@@ -7,7 +7,7 @@ public class CreatureCard : Card
     {
     _phHealth = health;
     }
-    public int GetHealth()
+    public override int GetHealth()
     {
         return _phHealth;
     }
