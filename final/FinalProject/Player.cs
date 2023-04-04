@@ -20,17 +20,10 @@ public class Player
    }
    public static void PlayCard(int cost, int mana, List<Card> playerHand, int index)
     {
-        while (true)
+        if (cost <= mana)
         {
-            if (cost <= mana)
-            {
-                playerHand.RemoveAt(index);
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Sorry you do not have enough mana for that card");
-            }
+            playerHand.RemoveAt(index);
         }
+        
     }
 }

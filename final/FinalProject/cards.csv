@@ -8,8 +8,5 @@ C,Dragon,Creature,5,5,5
 C,Basilisk,Creature,5,6,4
 S,Fireball,Deal 2 damage to your opponent,1,2
 S,Ice Spike,Deal 2 damage to an opposing creature,1,2
-S,Fireball,Deal 2 damage to your opponent,1,2
-S,Ice Spike,Deal 2 damage to an opposing creature,1,2
 S,ArcaneMissiles, deal 3 damage to your opponent,2,3
 S,RainFire,Deal 4 damage to your opponent,4,4
-

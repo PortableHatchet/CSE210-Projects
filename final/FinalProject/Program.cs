@@ -12,42 +12,32 @@ class Program
 
         foreach (List<string> card in readCards)
         {   
-            //foreach (string cardPart in card)
+        
+            string type = card[0];
+            string name = card[1];
+            string description = card[2];
+            string cost = card[3];
+            int costInt = Convert.ToInt32(cost);
+            string damage = card[4];
+            int damageInt = Convert.ToInt32(damage);
+            int healthInt = 0;
+            if (card.Count >= 6)
             {
-                string type = card[0];
-
-                string name = card[1];
-                //string nameString = name.ToString();
-
-                string description = card[2];
-                //string descriptionString = description.ToString();
-
-                string cost = card[3];
-                int costInt = Convert.ToInt32(cost);
-
-                string damage = card[4];
-                int damageInt = Convert.ToInt32(damage);
-                
-                int healthInt = 0;
-                if (card.Count >= 6)
-                {
-                    string health = card[5];
-                    healthInt = Convert.ToInt32(health);
-                }
-                switch (type)
-                {
-                    case "C":
-                        playerDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));
-                        break;
-                    case "S":
-                        playerDeck.Add(new SpellCard(type, name, description, costInt, damageInt));
-                        break;
-                    case "E":
-                        playerDeck.Add(new EnhancementCard(type, name, description, costInt, damageInt));
-                        break;
-                    default:
-                        throw new ArgumentException($"Unknown card type: {type}");
-                }
+                string health = card[5];
+                healthInt = Convert.ToInt32(health);
+            }
+            switch (type)
+            {
+                case "C":
+                    playerDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));
+                    break;
+                case "S":
+                    playerDeck.Add(new SpellCard(type, name, description, costInt, damageInt));                        break;
+                //case "E":
+                //    playerDeck.Add(new EnhancementCard(type, name, description, costInt, damageInt));
+                //    break;
+                default:
+                    throw new ArgumentException($"Unknown card type: {type}");
             }
         }
         string phUserInput = "0"; 
@@ -103,6 +93,7 @@ class Program
                         {
                             Console.WriteLine("What creature would you like to attack with?");
                             Player.ShowBoard(creatureOnBoard);
+
                             int pickCreature = Convert.ToInt32(Console.ReadLine());
                             Card creatureCard = creatureOnBoard[pickCreature];
                             int creatureDamage = creatureCard.GetDamage();
@@ -135,6 +126,24 @@ class Program
                     int playIndex = Convert.ToInt32(Console.ReadLine());
                     Card playCard = playerHand[playIndex];
                     string cardType = playCard.GetCardType();
+                    int cardCost = playCard.GetCost();
+                    while (true)
+                    {
+                        if (cardCost <= mana)
+                        {
+                            Player.PlayCard(cardCost, mana, playerHand, playIndex);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry you do not have enough mana for that card");
+                            Console.WriteLine("What card would you like to play?");
+                            playIndex = Convert.ToInt32(Console.ReadLine());
+                            playCard = playerHand[playIndex];
+                            cardType = playCard.GetCardType();
+                            cardCost = playCard.GetCost();
+                        }
+                    }
                     if (cardType == "C")
                     {
                         creatureOnBoard.Add(playCard);
@@ -144,8 +153,7 @@ class Program
                         cpuHealth = playCard.DealDamage(cpuHealth, playCard.GetDamage());
                     }
                     
-                    Player.PlayCard(playCard.GetCost(), mana, playerHand, playIndex);
-
+                    
                     int index = rng.Next(playerDeck.Count);
                     Card item = playerDeck[index];
                     playerHand.Add(item);
