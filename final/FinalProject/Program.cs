@@ -93,23 +93,39 @@ class Program
                     Console.WriteLine();
                     Console.WriteLine("Board: ");
                     Console.WriteLine("     Opponent: " + oppCreatureOnBoard);
-                    Console.WriteLine("     Yours: " + creatureOnBoard);
-
-                    Console.WriteLine("Would you like to attack with a creature? \n1. Yes\n2. No");
-                    creatureAtt = Console.ReadLine();
-                    if (creatureAtt == "1")
+                    Console.WriteLine("     Yours: ");
+                    Player.ShowBoard(creatureOnBoard);
+                    if (creatureOnBoard.Count > 0)
                     {
-                        Console.WriteLine("What creature would you like to attack with?");
-                        int pickCreature = Convert.ToInt32(Console.ReadLine());
-                        Card creatureCard = creatureOnBoard[pickCreature];
-                        int creatureDamage = creatureCard.GetDamage();
-
-                        if (oppCreatureOnBoard.Count > 0)
+                        Console.WriteLine("Would you like to attack with a creature? \n1. Yes\n2. No");
+                        creatureAtt = Console.ReadLine();
+                        if (creatureAtt == "1")
                         {
-                            Card oppCreature = oppCreatureOnBoard[0];
-                            int targetHealth = oppCreature.GetHealth();
-                            creatureCard.DealDamage(targetHealth, creatureDamage);
-                        }
+                            Console.WriteLine("What creature would you like to attack with?");
+                            Player.ShowBoard(creatureOnBoard);
+                            int pickCreature = Convert.ToInt32(Console.ReadLine());
+                            Card creatureCard = creatureOnBoard[pickCreature];
+                            int creatureDamage = creatureCard.GetDamage();
+
+                            if (oppCreatureOnBoard.Count > 0)
+                            {
+                                Card oppCreature = oppCreatureOnBoard[0];
+                                int targetHealth = oppCreature.GetHealth();
+                                int finalHealth = creatureCard.DealDamage(targetHealth, creatureDamage);
+                                if (finalHealth == 0)
+                                {
+                                    oppCreatureOnBoard.RemoveAt(0);
+                                }
+                                else
+                                {
+                                    oppCreature.SetHealth(finalHealth);
+                                }
+                            }
+                            else 
+                            {
+                                cpuHealth = creatureCard.DealDamage(cpuHealth, creatureDamage);
+                            }
+                    }
                     }
 
                     Console.WriteLine("Cards in Hand: ");
@@ -128,7 +144,7 @@ class Program
                         cpuHealth = playCard.DealDamage(cpuHealth, playCard.GetDamage());
                     }
                     
-                    playCard.PlayCard(playCard.GetCost(), mana, playerHand, playIndex);
+                    Player.PlayCard(playCard.GetCost(), mana, playerHand, playIndex);
 
                     int index = rng.Next(playerDeck.Count);
                     Card item = playerDeck[index];

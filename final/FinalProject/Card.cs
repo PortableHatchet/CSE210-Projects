@@ -46,6 +46,9 @@ public class Card
     {
         return 0;
     }
+    public virtual void SetHealth(int newHealthValue)
+    {
+    }
     public static List<List<string>> ReadCards()
     {
         
@@ -62,15 +65,5 @@ public class Card
         return cardDeck;
     }
 
-    public virtual void PlayCard(int cost, int mana, List<Card> playerHand, int index)
-    {
-        if (cost <= mana)
-        {
-            playerHand.RemoveAt(index);
-        }
-        else
-        {
-            Console.WriteLine("Sorry you do not have enough mana for that card");
-        }
-    }
+    
 }

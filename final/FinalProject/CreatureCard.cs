@@ -18,4 +18,9 @@ public class CreatureCard : Card
         newCreatureHealth = target - damage;
         return newCreatureHealth;
     }
+    
+    public override void SetHealth(int newHealthValue)
+    {
+        _phHealth = newHealthValue;
+    }
 }
