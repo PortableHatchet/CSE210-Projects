@@ -7,6 +7,7 @@ class Program
         List<List<string>> readCards = new List<List<string>>();
 
         List<Card> playerDeck = new List<Card>();
+        List<Card> cpuDeck = new List<Card>();
 
         readCards = Card.ReadCards();
 
@@ -30,9 +31,12 @@ class Program
             {
                 case "C":
                     playerDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));
+                    cpuDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));
                     break;
                 case "S":
-                    playerDeck.Add(new SpellCard(type, name, description, costInt, damageInt));                        break;
+                    playerDeck.Add(new SpellCard(type, name, description, costInt, damageInt));
+                    cpuDeck.Add(new CreatureCard(type, name, description, costInt, damageInt, healthInt));                     
+                    break;
                 //case "E":
                 //    playerDeck.Add(new EnhancementCard(type, name, description, costInt, damageInt));
                 //    break;
@@ -53,6 +57,8 @@ class Program
                 List<Card> creatureOnBoard = new List<Card>();
 
                 List<Card> playerHand = new List<Card>();
+                List<Card> cpuHand = new List<Card>();
+
                 Random rng = new Random();
 
                 bool gameLoop = true;
@@ -61,6 +67,8 @@ class Program
                 int mana = 1;
 
                 int handCount = 0;
+                int cpuHandCount = 0;
+
                 while (playerDeck.Count > 0)
                 {
                     int index = rng.Next(playerDeck.Count);
@@ -69,6 +77,18 @@ class Program
                     playerDeck.RemoveAt(index);
                     handCount++;
                     if (handCount == 4)
+                    {
+                        break;
+                    }
+                }
+                while (cpuDeck.Count > 0)
+                {
+                    int index = rng.Next(cpuDeck.Count);
+                    Card item = cpuDeck[index];
+                    cpuHand.Add(item);
+                    cpuDeck.RemoveAt(index);
+                    cpuHandCount++;
+                    if (cpuHandCount == 4)
                     {
                         break;
                     }
